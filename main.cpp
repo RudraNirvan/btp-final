@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <ctype.h>
+#include <time.h>
 #include <windows.h>
 #include "wtypes.h"
 
@@ -348,7 +349,10 @@ int main() {
 	basicOCR ocr;
 	int count = 0;
 	
-	while(1) {
+	bool timer = false;
+	time_t startTime;
+		
+	while(1) {		
 		Mat frame, temp, ori;
 		if(!cap.read(frame)) {
 			cout<<"Unable to read frame from webcam.";
@@ -467,6 +471,20 @@ int main() {
 				if( (imgLines.rows * imgLines.cols) - countNonZero(imgLines) == 0) { // no line drawn == white image
 					continue;
 				} else { // line drawn
+					if(timer == false) {
+						timer = true;
+						startTime = time(NULL);
+						continue;
+					} else {
+						double difft = difftime(time(NULL), startTime);
+						int diff = difft * 1000; // diff == milliseconds
+						if(diff < 70) {
+							continue;
+						}
+						
+						// lots of time has passed since last blue colour was visible
+						timer = false;
+					}
 					Mat img;
 					resize(imgLines, img, Size(128, 128));
 //					imshow("resized", img);
