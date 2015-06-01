@@ -202,7 +202,7 @@ float basicOCR::classify(IplImage* img, int showResult)
 	}
 	float pre=100*((float)accuracy/(float)K);
 	if(showResult==1){
-		char key[] = {'S', '6', 'O', '9', '7'};
+		char key[] = {'S', '6', 'O', '9', 'W'};
 //		printf("|\t%.0f\t| \t%.2f%%  \t| \t%d of %d \t| \n",result,pre,accuracy,K);
 		printf("|\t%.0f = %c\t| \t%.2f%%  \t| \t%d of %d \t| \n", result, key[(int)result], pre, accuracy,K);
 		printf(" ---------------------------------------------------------------\n");
@@ -212,7 +212,7 @@ float basicOCR::classify(IplImage* img, int showResult)
 		
 		Mat output(200, 200, CV_8UC3);
 		output = Scalar(255, 255, 255);
-		putText(output, out_s, cvPoint(20, 180), FONT_HERSHEY_COMPLEX_SMALL, 12, cvScalar(0, 0, 255), 3, 1);
+		putText(output, out_s, cvPoint(10, 180), FONT_HERSHEY_COMPLEX_SMALL, 11, cvScalar(255, 153, 153), 3, 1);
 		imshow("result", output);
 	}
 
@@ -421,7 +421,7 @@ int main() {
 		
 		imshow("Webcam", frame);
 //		imshow("Original", ori+imgLines);
-//		imshow("Black & White", imgLines);
+		imshow("Black & White", imgLines);
 		
 		char c = waitKey(30);
 		if(c == 'r') {
@@ -442,7 +442,7 @@ int main() {
 				1. To save images, first change the number below to the class which you are targetting.
 				2. [NOT NEEDED ANYMORE] Change the path below.
 			*/
-			ss<<2;
+			ss<<4;
 			if(count < 10)
 				ss<<0<<count;
 			else

@@ -16,7 +16,7 @@ int main() {
 	Mat frame(128, 128, CV_8UC1);
 	frame = Scalar(255);
 	
-	int klass = 2;
+	int klass = 4;
 	vector<int> compressionParams;
 	compressionParams.push_back(CV_IMWRITE_PXM_BINARY);
 	

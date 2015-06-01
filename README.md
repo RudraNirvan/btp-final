@@ -1,3 +1,3 @@
 Following gestures are recognized:
 
-S, 6, O, 9, 7
+S, 6, O, 9, W
